@@ -92,10 +92,12 @@
             width: 200px;
         }
 
-        .br-logo img {
+        .br-logo img,
+        .header-tag img {
             width: 100%;
             height: auto;
             display: block;
+            padding: 5px 0px;
         }
 
         /* ── HERO ── */
@@ -222,6 +224,36 @@
             box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
         }
 
+        .fullscreen-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+
+            padding: 6px 10px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(2px);
+
+            pointer-events: none;
+            z-index: 5;
+
+            opacity: 0.8;
+            animation: hint-fade 4s ease forwards;
+        }
+
+@keyframes hint-fade {
+    0%   { opacity: 0; transform: translateY(4px); }
+    10%  { opacity: 0.9; }
+    70%  { opacity: 0.9; }
+    100% { opacity: 0; transform: translateY(0); }
+}
+
         /* scanlines */
         .embed-frame::before {
             content: '';
@@ -281,6 +313,21 @@
             text-transform: uppercase;
         }
 
+            .crt-brand .r {
+                color: #ff4040;
+                text-shadow: 0 0 6px rgba(255, 64, 64, 0.8);
+            }
+
+            .crt-brand .g {
+                color: #40ff80;
+                text-shadow: 0 0 6px rgba(64, 255, 128, 0.8);
+            }
+
+            .crt-brand .b {
+                color: #4090ff;
+                text-shadow: 0 0 6px rgba(64, 144, 255, 0.8);
+            }
+
         .crt-controls {
             display: flex;
             gap: 8px;
@@ -320,6 +367,7 @@
         .game-footer {
             font-size: 18px;
             background-color: var(--bg);
+            margin-top: 20px;
             padding: 5px 10px;
             text-align: center;
             text-transform: uppercase;
@@ -459,6 +507,9 @@
             <div>
                 <div class="crt-outer">
                     <div class="embed-frame">
+                        <div class="fullscreen-hint">
+                          ⛶ Tap for fullscreen
+                        </div>
                         <div class="embed-inner">
                             <iframe
                                 id="gameFrame"
@@ -469,7 +520,9 @@
                         </div>
                     </div>
                     <div class="crt-bottom">
-                        <div class="crt-brand">RGBeatrush</div>
+                        <div class="crt-brand">
+                          <span class="r">R</span><span class="g">G</span><span class="b">B</span>eatrush
+                        </div>
                         <div class="crt-vent">
                             <span></span><span></span><span></span><span></span>
                         </div>
@@ -483,8 +536,8 @@
 
                 <div class="game-footer">
                     <p>Finish <span class="highlight">level 10</span> and collect all
-                    <span class="highlight">beat tapes</span> to generate a code for
-                    <span class="highlight">50% off</span>
+                    <span class="highlight">beat tapes</span> to get the cheat code for
+                    <span class="highlight">50% off</span> a digital copy of
                     <span class="highlight">Hyperfighting</span>.</p>
                     <img class="tapes" src="tapes.png" alt="Beat tapes">
                     <a class="footer-btn" href="https://beatrush.bandcamp.com/album/hyperfighting" target="_blank" rel="noopener">
@@ -501,14 +554,14 @@
                         <span>the video game</span>
                     </h2>
                     <p>
-                        Boom Bap Billy has GAS (Gear Acquisition Syndrome). Help him track down the only known cure, new gear. Watch out for the legally distinct duo who believe GAS should be treated… permanently.
+                        Boom Bap Billy has GAS (Gear Acquisition Syndrome). Help him track down the only known cure, new gear. Watch out for the Hyperfighters who believe GAS should be treated… permanently.
                     </p>
                     <p>
                         Along the way, collect the Beat Tapes hidden across the city by beatrush, who stashed them to avoid releasing his music.
                     </p>
                     <p>
                         Finish level 10 and collect all 5 Beat Tapes to unlock a 50% discount code for beatrush's new album:
-                        <a href="https://beatrush.bandcamp.com/album/hyperfighting">Hyperfighting.</a>
+                        <a href="https://beatrush.bandcamp.com/album/hyperfighting">Hyperfighting</a>.
                         <a href="https://beatrush.bandcamp.com/album/hyperfighting">
                             <img src="cover-art.jpg" alt="Hyperfighting album cover">
                         </a>
@@ -517,7 +570,7 @@
                         <li>Developer <span>beatrush game studios</span></li>
                         <li>Release Date <span>2026</span></li>
                         <li>Composer <span>beatrush</span></li>
-                        <li>Album <span>Hyperfighting</span></li>
+                        <li>Platform <span>Pico-8</span></li>
                     </ul>
                 </div>
             </section>
@@ -531,8 +584,26 @@
             <a href="https://youtube.com/beatrushmusic" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://beatrush.bandcamp.com/album/hyperfighting" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
         </div>
-        © 2026 Sam Bennett — beatrush
+        © 2026 Design by Sam Bennett — beatrush
     </footer>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const frame = document.getElementById("gameFrame");
+
+  if (!frame) return;
+
+  frame.addEventListener("click", () => {
+    if (frame.requestFullscreen) {
+      frame.requestFullscreen();
+    } else if (frame.webkitRequestFullscreen) {
+      frame.webkitRequestFullscreen();
+    }
+  });
+});
+</script>
+
 </body>
+
+
 </html>
