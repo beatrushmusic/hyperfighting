@@ -181,10 +181,6 @@
             align-items: start;
         }
 
-        @media (max-width: 700px) {
-            .split { grid-template-columns: 1fr; }
-        }
-
         /* ── SECTION LABEL ── */
         .section-label {
             font-size: 10px;
@@ -234,7 +230,7 @@
        .fullscreen-hint {
             position: absolute;
 
-            /* position over PICO-8 fullscreen button */
+            /* default: desktop (bottom right) */
             bottom: 8px;
             right: 10px;
 
@@ -253,7 +249,7 @@
             z-index: 6;
 
             opacity: 0;
-            transition: opacity 5s ease;
+            transition: opacity 0.3s ease;
         }
 
         .fullscreen-hint.show {
@@ -486,6 +482,20 @@
         }
 
         .socials a:hover { opacity: 0.6; }
+
+                @media (max-width: 700px) {
+            .split { grid-template-columns: 1fr; }
+        }
+
+        @media (pointer: coarse) {
+            .fullscreen-hint {
+                top: 8px;
+                left: 10px;
+
+                bottom: auto;
+                right: auto;
+            }
+        }
     </style>
 </head>
 
