@@ -1261,10 +1261,7 @@ canvas{
 		#endif
 		col*=vig;
 
-		/* scanlines */
-		float scans=clamp(0.35+0.18*sin(6.0*time+curved_uv.y*resolution.y*1.5),0.0,1.0);
-		float s=pow(scans,0.9);
-		col*=s;
+
 
 		/* vertical lines (shadow mask) */
 		col*=1.0-0.23*clamp((mod(gl_FragCoord.xy.x,3.0))*0.5,0.0,1.0);
