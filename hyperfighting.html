@@ -1180,7 +1180,7 @@ canvas{
 	}
 	vec2 curve(vec2 uv) {
 		uv=(uv-0.5)*2.0;
-		uv*=vec2(1.049,1.042);
+		uv*=vec2(0.049,0.042);
 		uv-=vec2(-0.008,0.008);
 		uv.x*=1.0+pow(abs(uv.y)/5.0,2.0);
 		uv.y*=1.0+pow(abs(uv.x)/4.0,2.0);
